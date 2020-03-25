@@ -21,6 +21,12 @@ public class CityController {
     @Autowired
     private ICityService cityService;
 
+    @RequestMapping("/ping")
+    public String ping() {
+        System.out.println("!!! Call ping method. Reply PONG");
+        return "pong";
+    }
+
     @RequestMapping("/cities")
     public List<City> findCities() {
 
