@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3connection-timeout
+kind: VirtualService
+metadata:
+  name: ms78-http-vs
+spec:
+  hosts:
+    - "http-ms78.example.com"
+  gateways:
+    - ms78-http-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /cities
+        - uri:
+            prefix: /ping
+      route:
+        - destination:
+            port:
+              number: 8080
+            host: ms78-jdbc-app
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: gateway-error,connect-failure,refused-stream

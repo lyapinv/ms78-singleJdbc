@@ -1,0 +1,7 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mysql-1-config
+  namespace: ms78
+data:
+  db.connection.uri: jdbc:mysql://mysql-1-ext-service:3306/test
